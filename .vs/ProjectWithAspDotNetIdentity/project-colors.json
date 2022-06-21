@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "14a71fa1-9f98-4683-9027-c869ebc1d9e8": {
+      "ProjectGuid": "14a71fa1-9f98-4683-9027-c869ebc1d9e8",
+      "DisplayName": "ProjectWithAspDotNetIdentity",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

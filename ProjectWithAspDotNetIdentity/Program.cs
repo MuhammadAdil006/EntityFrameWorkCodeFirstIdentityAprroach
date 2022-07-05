@@ -39,7 +39,7 @@ var migrationAssembly = typeof(Program).Assembly.GetName().Name;
 builder.Services.AddDbContext<UserDbContext>(options =>
            options.UseSqlServer(connString, sql => sql.MigrationsAssembly(migrationAssembly)));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<UserDbContext>();
 var app = builder.Build();
 

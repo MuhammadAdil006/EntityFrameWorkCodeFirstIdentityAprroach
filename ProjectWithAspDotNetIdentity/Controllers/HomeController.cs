@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectWithAspDotNetIdentity.Models;
 using System.Diagnostics;
 
@@ -17,9 +18,10 @@ namespace ProjectWithAspDotNetIdentity.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
+
             return View();
         }
 

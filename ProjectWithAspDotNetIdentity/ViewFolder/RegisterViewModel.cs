@@ -5,6 +5,15 @@ namespace ProjectWithAspDotNetIdentity.ViewFolder
     public class RegisterViewModel
     {
 
+        public RegisterViewModel()
+        {
+            Genders = new List<String>()
+            {
+                "male","female","others"
+            };
+        }
+        public String Gender { get; set; }
+        public List<String> Genders { get; set; }
         [Required]
         [StringLength(20, ErrorMessage = "Length should not exceed 20  characters")]
         public string Username { get; set; }

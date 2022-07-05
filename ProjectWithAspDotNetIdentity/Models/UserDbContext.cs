@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ProjectWithAspDotNetIdentity.Models
 {
-    public partial class UserDbContext : IdentityDbContext
+    public partial class UserDbContext : IdentityDbContext<ApplicationUser>
     {
         public UserDbContext()
         {
@@ -29,6 +29,7 @@ namespace ProjectWithAspDotNetIdentity.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>().Property(e => e.Gender).HasMaxLength(20);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

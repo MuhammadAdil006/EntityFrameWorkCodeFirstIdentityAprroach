@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ProjectWithAspDotNetIdentity.Models;
 using ProjectWithAspDotNetIdentity.ViewFolder;
 
 namespace ProjectWithAspDotNetIdentity.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public AccountController(UserManager<IdentityUser> uManager,
-                                 SignInManager<IdentityUser> sManager)
+        public AccountController(UserManager<ApplicationUser> uManager,
+                                 SignInManager<ApplicationUser> sManager)
         {
             userManager = uManager;
             signInManager = sManager;
@@ -22,7 +23,9 @@ namespace ProjectWithAspDotNetIdentity.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            RegisterViewModel rm = new RegisterViewModel();
+
+            return View(rm);
         }
         [HttpGet]
         public async Task<IActionResult> Logout()
@@ -53,17 +56,19 @@ namespace ProjectWithAspDotNetIdentity.Controllers
        }
             return View(model);
         }
+        
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = model.Username,
                     Email = model.Email,
                     EmailConfirmed = true,
                     LockoutEnabled = false,
+                    Gender=model.Gender,
                 };
                 var result = await userManager.CreateAsync(user,
                                                          model.Password);
@@ -82,7 +87,7 @@ namespace ProjectWithAspDotNetIdentity.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            return View();
+            return View(model);
         }
     }
 }
